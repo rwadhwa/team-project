@@ -13,7 +13,7 @@ db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
-    return render_template('home-base.html')
+    return render_template('index.html')
 
 
 @app.route('/members')
