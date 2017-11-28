@@ -3,7 +3,7 @@ from flask import Flask, session, render_template, request, flash, redirect, url
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '1029730198'
+app.config['SECRET_KEY'] = '3028876288'
 
 # setup SQLAlchemy
 basedir = os.path.abspath(os.path.dirname(__file__))
