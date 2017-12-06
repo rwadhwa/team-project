@@ -41,6 +41,29 @@ def show_all_cars():
     cars = Car.query.all()
     return render_template('car-all.html', cars=cars)
 
+@app.route('/car/delete/<int:id>', methods=['GET', 'POST'])
+def delete_course(id):
+    car = Car.query.filter_by(id=id).first()
+    if request.method == 'GET':
+        return render_template('car-delete.html', car=car)
+    if request.method == 'POST':
+        db.session.delete(car)
+        db.session.commit()
+        return redirect(url_for('show_all_cars'))
+
+
+@app.route('/car/edit/<int:id>', methods=['GET', 'POST'])
+def edit_car(id):
+    car = Car.query.filter_by(id=id).first()
+    if request.method == 'GET':
+        return render_template('car-edit.html', car=car)
+    if request.method == 'POST':
+        car.model = request.form['model']
+        car.cartype = request.form['cartype']
+        car.year = request.form['year']
+        car.description = request.form['description']
+        db.session.commit()
+        return redirect(url_for('show_all_cars'))
 
 @app.route('/manufacturers')
 def show_all_manufacturers():
