@@ -70,5 +70,27 @@ def show_all_manufacturers():
     manufacturers = Manufacturer.query.all()
     return render_template('manufacturer-all.html', manufacturers=manufacturers)
 
+@app.route('/manufacturer/delete/<int:id>', methods=['GET', 'POST'])
+def delete_manufacturer(id):
+    manufacturer = Manufacturer.query.filter_by(id=id).first()
+    if request.method == 'GET':
+        return render_template('manufacturer-delete.html', manufacturer=manufacturer)
+    if request.method == 'POST':
+        db.session.delete(manufacturer)
+        db.session.commit()
+        return redirect(url_for('show_all_manufacturers'))
+
+
+@app.route('/manufacturer/edit/<int:id>', methods=['GET', 'POST'])
+def edit_manufacturer(id):
+    manufacturer = Manufacturer.query.filter_by(id=id).first()
+    if request.method == 'GET':
+        return render_template('manufacturer-edit.html', manufacturer=manufacturer)
+    if request.method == 'POST':
+        manufacturer.name = request.form['name']
+        manufacturer.country = request.form['country']
+        db.session.commit()
+        return redirect(url_for('show_all_manufacturers'))
+
 if __name__ == '__main__':
     app.run(debug=True)
