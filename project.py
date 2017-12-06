@@ -65,6 +65,20 @@ def edit_car(id):
         db.session.commit()
         return redirect(url_for('show_all_cars'))
 
+@app.route('/car/add', methods=['GET', 'POST'])
+def add_car():
+    if request.method == 'GET':
+        return render_template('car-add.html')
+    if request.method == 'POST':
+        model = request.form['model']
+        cartype = request.form['cartype']
+        year = request.form['year']
+        description = request.form['description']
+        car = Car(model=model, cartype=cartype, year=year, description=description)
+        db.session.add(car)
+        db.session.commit()
+        return redirect(url_for('show_all_cars'))
+
 @app.route('/manufacturers')
 def show_all_manufacturers():
     manufacturers = Manufacturer.query.all()
@@ -89,6 +103,18 @@ def edit_manufacturer(id):
     if request.method == 'POST':
         manufacturer.name = request.form['name']
         manufacturer.country = request.form['country']
+        db.session.commit()
+        return redirect(url_for('show_all_manufacturers'))
+
+@app.route('/manufacturer/add', methods=['GET', 'POST'])
+def add_manufacturer():
+    if request.method == 'GET':
+        return render_template('manufacturer-add.html')
+    if request.method == 'POST':
+        name = request.form['name']
+        country = request.form['country']
+        manufacturer = Manufacturer(name=name, country=country)
+        db.session.add(manufacturer)
         db.session.commit()
         return redirect(url_for('show_all_manufacturers'))
 
