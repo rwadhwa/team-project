@@ -1,0 +1,31 @@
+{% extends "home-base.html" %}
+
+{% block title %}
+Edit Manufacturer
+{% endblock %}
+
+{% block head %}
+  {{super()}}
+  <style>
+    body {
+      padding-top: 54px;
+    }
+  </style>
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+   <h1 class="mt-5"><i class="fa fa-user" aria-hidden="true"></i> Edit Manufacturer:</h1>
+  <form action="/manufacturer/edit/{{manufacturer.id}}" method="post">
+    <div class="form-group">
+      <label>Name</label>
+      <input class="form-control" type="text" name="name" value="{{manufacturer.name}}" required="true">
+    </div>
+    <div class="form-group">
+      <label>Country</label>
+      <textarea class="form-control" name="country" required="true">{{manufacturer.country}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+  </form>
+ </div>
+{% endblock %}

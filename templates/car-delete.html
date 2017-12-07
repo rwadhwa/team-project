@@ -1,0 +1,52 @@
+{% extends "home-base.html" %}
+
+{% block title %}
+Delete Car
+{% endblock %}
+
+{% block head%}
+  {{super()}}
+  <style>
+    body {
+      padding-top: 54px;
+    }
+  </style>
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+   <h1 class="mt-5"><i class="fa fa-window-close" aria-hidden="true"></i> Delete Car:</h1>
+  <form action="/car/delete/{{car.id}}" method="post">
+    <div class="form-group">
+      <label>Car Model</label>
+      <input class="form-control" type="text" name="car model" value="{{car.model}}" required="true" readonly="true">
+    </div>
+    <div class="form-group">
+      <label>Car Type</label>
+      <textarea class="form-control" name="cartype" required="true" readonly="true">{{car.cartype}}</textarea>
+    </div>
+    <div class="form-group">
+      <label>Year</label>
+      <textarea class="form-control" name="year" required="true" readonly="year">{{car.year}}</textarea>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea class="form-control" name="description" required="true" readonly="true">{{car.description}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-danger" id="delete_btn">Delete</button>
+  </form>
+ </div>
+{% endblock %}
+
+{% block scripts%}
+  {{super()}}
+  <script>
+  $(document).ready(function () {
+    $('#delete_btn').click(function () {
+      if (! confirm('Are you sure?')) {
+        return false;
+      }
+    })
+  });
+  </script>
+{% endblock%}

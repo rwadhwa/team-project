@@ -1,0 +1,55 @@
+{% extends "home-base.html" %}
+
+{% block title %}
+All Cars
+{% endblock %}
+
+{% block head%}
+  {{super()}}
+  <style>
+    body {
+      padding-top: 54px;
+    }
+  </style>
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+   <h1 class="mt-5"><i class="fa fa-car" aria-hidden="true"></i> Car Directory</h1>
+   <div class="row bottom-margin">
+     <a href="/car/add" class="btn btn-primary" role="button" aria-disabeled="true">Add Car</a>
+   </div>
+{% if cars %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Car ID</th>
+      <th>Model</th>
+      <th>Car Type</th>
+      <th>Year</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for car in cars %}
+  <tr>
+    <th scope="row">{{car.id}}</th>
+        <td>{{car.model}}</td>
+        <td>{{car.cartype}}</td>
+        <td>{{car.year}}</td>
+        <td>{{car.description}}</td>
+        <td>
+          <a href="/car/edit/{{car.id}}" class ="btn btn-success" role="button" aria-disabled="true"> Edit</a>
+        </td>
+        <td>
+         <a href="/car/delete/{{car.id}}" class ="btn btn-danger" role="button" aria-disabled="true"> Delete</a>
+       </td>
+  </tr>
+   {% endfor %}
+ </tbody>
+</table>
+{% else %}
+<h3>There are no cars in the directory yet.</h3>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "home-base.html" %}
+
+{% block title %}
+Delete Manufacturer
+{% endblock %}
+
+{% block head%}
+  {{super()}}
+  <style>
+    body {
+      padding-top: 54px;
+    }
+  </style>
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+   <h1 class="mt-5"><i class="fa fa-window-close" aria-hidden="true"></i> Delete Manufacturer:</h1>
+  <form action="/manufacturer/delete/{{manufacturer.id}}" method="post">
+    <div class="form-group">
+      <label>Name</label>
+      <input class="form-control" type="text" name="name" value="{{manufacturer.name}}" required="true" readonly="true">
+    </div>
+    <div class="form-group">
+      <label>Country</label>
+      <textarea class="form-control" name="country" required="true" readonly="true">{{manufacturer.country}}</textarea>
+    </div>
+    <button type="submit" class="btn btn-danger" id="delete_btn">Delete</button>
+  </form>
+ </div>
+{% endblock %}
+
+{% block scripts %}
+  {{super()}}
+  <script>
+  $(document).ready(function () {
+    $('#delete_btn').click(function () {
+      if (! confirm('All related courses will be deleted too. Are you sure?')) {
+        return false;
+      }
+    })
+  });
+  </script>
+{% endblock %}

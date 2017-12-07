@@ -1,0 +1,49 @@
+{% extends "home-base.html" %}
+
+{% block title %}
+All Manufacturers
+{% endblock %}
+
+{% block head%}
+  {{super()}}
+  <style>
+    body {
+      padding-top: 54px;
+    }
+  </style>
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+   <h1 class="mt-5"><i class="fa fa-users" aria-hidden="true"></i> Manufacturer Directory</h1>
+  <div class="row bottom-margin">
+    <a href="/manufacturer/add" class="btn btn-primary" role="button" aria-disabeled="true">Add Manufacturer</a>
+  </div>
+{% if manufacturers %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Manufacturer ID</th>
+        <th>Name</th>
+        <th>Country</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for manufacturer in manufacturers %}
+  <tr>
+        <th scope="row">{{manufacturer.id}}</th>
+        <td>{{manufacturer.name}}</td>
+        <td>{{manufacturer.country}}</td>
+        <td>
+          <a href="/manufacturer/edit/{{manufacturer.id}}" class ="btn btn-success" role="button" aria-disabled="true"> Edit</a>
+          <a href="/manufacturer/delete/{{manufacturer.id}}" class="btn btn-danger" role="button" aria-disabled="true"> Delete</a>
+        </td>
+  </tr>
+   {% endfor %}
+ </tbody>
+</table>
+{% else %}
+<h3>There are no manufacturers in the directory yet.</h3>
+{% endif %}
+</div>
+{% endblock %}

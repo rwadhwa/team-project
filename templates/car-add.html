@@ -1,0 +1,30 @@
+{% extends "home-base.html" %} {% block title %} Add Car {% endblock %} {% block head%} {{super()}}
+<style>
+  body {
+    padding-top: 54px;
+  }
+</style>
+{% endblock %} {% block page_content %}
+<div class="container">
+  <h1 class="mt-5"><i class="fa fa-car" aria-hidden="true"></i> Add Car:</h1>
+  <form action="/car/add" method="post">
+    <div class="form-group">
+      <label>Model</label>
+      <input class="form-control" type="text" name="model" placeholder="model" required="true">
+    </div>
+    <div class="form-group">
+      <label>Car Type</label>
+      <input class="form-control" type="text" name="cartype" placeholder="cartype" required="true">
+    </div>
+    <div class="form-group">
+      <label>Year</label>
+      <input class="form-control" type="text" name="year" placeholder="year" required="true">
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea class="form-control" name="description" placeholder="Car Description" required="true"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Car</button>
+  </form>
+</div>
+{% endblock %}
