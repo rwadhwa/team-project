@@ -41,6 +41,15 @@ def show_all_cars():
     cars = Car.query.all()
     return render_template('car-all.html', cars=cars)
 
+@app.route('/inventory')
+def get_all_cars():
+    cars =[
+    'M6',
+    'S-Class',
+    'Model-3'
+    ]
+    return render_template('inventory.html', cars = cars)
+
 @app.route('/car/delete/<int:id>', methods=['GET', 'POST'])
 def delete_course(id):
     car = Car.query.filter_by(id=id).first()

@@ -2,20 +2,34 @@
 {% block title %}Team Project Members{% endblock %}
 
 {% block head%}
-  {{super()}}
-  <style>
-    body {
-      padding-top: 75px;
-    }
-  </style>
+  {{super()}}
+  <style>
+    body {
+      padding-top: 75px;
+    }
+  </style>
 {% endblock %}
 
 {% block page_content%}
 <h1> Team Members: </h1>
-  <ul>
-    <li>George Thuku</li>
-    <li>Parth Patel</li>
-    <li>Raveena Wadhwa</li>
-  </ul>
+<ul>
+<div class="outer">
+   <p>Parth Patel</p>
+   <img src="{{ url_for('static', filename='img/parthpatel.jpg') }}" width="180" height="220">
+ </div><br>
+
+ <div class="inner">
+   <p>Raveena Wadhwa</p>
+   <img src="{{ url_for('static', filename='img/raveenawadhwa.jpg') }}" width="180" height="220">
+ </div><br>
+
+ <div class="outer">
+   <p>George Thuku</p>
+   <img src="{{ url_for('static', filename='img/georgethuku.jpg') }}" width="180" height="220">
+ </div>
+
+
+</ul>
+
 
 {% endblock%}
