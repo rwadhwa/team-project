@@ -17,3 +17,25 @@ Manufacturer Name | Country
 BMW | Germany
 Mercedes | Germany
 Tesla | United States
+
+## Steps To Run the Application
+
+### Install necessary virtual environment file:
+
+  $ virtualenv venv
+
+### Activate the virtual environment:
+
+  $ source venv/bin/activate
+
+### Install necessary packages
+
+  $ pip install -r requirements.txt
+
+### Initialize the database
+
+  $ python manage.py deploy
+
+### Run the development server with the debugger on
+
+  $ python manage.py runserver -d
