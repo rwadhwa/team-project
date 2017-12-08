@@ -1,0 +1,36 @@
+{% extends "home-base.html" %}
+
+{% block title %}Inventory{% endblock %}
+
+{% block page_content %}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<div class="container">
+   <h1 class="mt-5"><i class="fa fa-film" aria-hidden="true"></i> Car Inventory</h1>
+   <ul>
+     {% for inventory in inventory %}
+       <li><a href="#{{inventory[0]}}" data-toggle="modal" data-target="#{{inventory[0]}}">{{[1]}}</a></li>
+       <div class="modal fade bannerformmodal" tabindex="-1" role="dialog" aria-labelledby="{{inventory}}ModalLabel" aria-hidden="true" id="{{inventory[0]}}">
+       <div class="modal-dialog modal-sm">
+               <div class="modal-content">
+                 <div class="modal-content">
+                       <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                       <h4 class="modal-title" id="{{inventory[0]}}label">Description</h4>
+                       </div>
+                       <div class="modal-body">
+                         {{inventory[2]}}
+                     </div>
+                   </div>
+
+                 </div>
+               </div>
+             </div>
+       {% endfor %}
+   </ul>
+
+
+    </div>
+   {% endblock %}

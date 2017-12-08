@@ -118,5 +118,15 @@ def add_manufacturer():
         db.session.commit()
         return redirect(url_for('show_all_manufacturers'))
 
+
+@app.route('/inventory')
+def get_all_inventory():
+    inventory = [
+        ['BMW', 'BMW M6', 'One of BMWs best performance cars.'],
+        ['Mercedes', 'Mercedes S Class', 'The ultimate Mercedes in terms of luxury.'],
+        ['Tesla', 'Tesla Model 3', 'The worlds first premium electric car under $40,000.']
+    ]
+    return render_template('inventory.html', inventory=inventory)
+
 if __name__ == '__main__':
     app.run(debug=True)
