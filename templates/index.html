@@ -17,5 +17,23 @@ Homepage
 {% endblock %}
 
 {% block page_content %}
-<h1>Team Project Homepage</h1>
+<center><h1>Our Car Homepage</h1></center>
+
+<div class="outer">
+<center>
+   <img src="{{ url_for('static', filename='img/bmw-gif.gif') }}"></center>
+ </div><br>
+
+ <div class="inner">
+<center>
+   <img src="{{ url_for('static', filename='img/giphy.gif') }}">
+ </center>
+ </div><br>
+
+ <div class="outer">
+<center>
+   <img src="{{ url_for('static', filename='img/tesla-gif.gif') }}">
+</center>
+ </div>
+
 {% endblock %}
