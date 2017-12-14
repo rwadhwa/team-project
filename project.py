@@ -1,8 +1,11 @@
 import os
 from flask import Flask, session, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-app = Flask(__name__)
 
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'hard to guess secure key'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
@@ -77,7 +80,8 @@ def edit_car(id):
 @app.route('/car/add', methods=['GET', 'POST'])
 def add_car():
     if request.method == 'GET':
-        return render_template('car-add.html')
+        manufacturers = Manufacturer.query.all()
+        return render_template('car-add.html', manufacturers=manufacturers)
     if request.method == 'POST':
         model = request.form['model']
         cartype = request.form['cartype']
@@ -86,10 +90,12 @@ def add_car():
         manufacturer_name = request.form['manufacturer']
         manufacturer = Manufacturer.query.filter_by(name=manufacturer_name).first()
 
-        car = Car(model=model, cartype=cartype, year=year, description=description)
+        car = Car(model=model, cartype=cartype, year=year, description=description, manufacturer=manufacturer)
         db.session.add(car)
         db.session.commit()
         return redirect(url_for('show_all_cars'))
+
+
 
 @app.route('/manufacturers')
 def show_all_manufacturers():
