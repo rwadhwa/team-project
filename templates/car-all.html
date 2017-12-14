@@ -28,6 +28,7 @@ All Cars
       <th>Car Type</th>
       <th>Year</th>
       <th>Description</th>
+      <th>Manufacturer</th>
     </tr>
   </thead>
   <tbody>
@@ -38,6 +39,7 @@ All Cars
         <td>{{car.cartype}}</td>
         <td>{{car.year}}</td>
         <td>{{car.description}}</td>
+        <td>{{car.manufacturer.name}}</td>
         <td>
           <a href="/car/edit/{{car.id}}" class ="btn btn-success" role="button" aria-disabled="true"> Edit</a>
         </td>

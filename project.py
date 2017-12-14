@@ -83,6 +83,9 @@ def add_car():
         cartype = request.form['cartype']
         year = request.form['year']
         description = request.form['description']
+        manufacturer_name = request.form['manufacturer']
+        manufacturer = Manufacturer.query.filter_by(name=manufacturer_name).first()
+
         car = Car(model=model, cartype=cartype, year=year, description=description)
         db.session.add(car)
         db.session.commit()
