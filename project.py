@@ -57,9 +57,9 @@ def get_all_cars():
 @app.route('/api/manufacturers/<int:id>', methods=['DELETE'])
 def delete_ajax_manufacturer(id):
     manufacturers = Manufacturer.query.get_or_404(id)
-    db.session.delete(manufacturer)
+    db.session.delete(manufacturers)
     db.session.commit()
-    return jsonify({"id": str(manufacturer.id), "name": manufacturer.name})
+    return jsonify({"id": str(manufacturers.id), "name": manufacturers.name})
 
 
 @app.route('/api/cars/<int:id>', methods=['DELETE'])
