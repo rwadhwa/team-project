@@ -30,15 +30,15 @@ Delete Manufacturer
  </div>
 {% endblock %}
 
-{% block scripts %}
+{% block scripts%}
   {{super()}}
   <script>
   $(document).ready(function () {
     $('#delete_btn').click(function () {
-      if (! confirm('All related information will be deleted too. Are you sure?')) {
+      if (! confirm('Are you sure?')) {
         return false;
       }
     })
   });
   </script>
-{% endblock %}
+{% endblock%}

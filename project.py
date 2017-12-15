@@ -1,5 +1,5 @@
 import os
-from flask import Flask, session, render_template, request, redirect, url_for
+from flask import Flask, session, render_template, request, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -53,6 +53,22 @@ def get_all_cars():
     ]
     return render_template('inventory.html', cars = cars)
 
+
+@app.route('/api/manufacturers/<int:id>', methods=['DELETE'])
+def delete_ajax_manufacturer(id):
+    manufacturers = Manufacturer.query.get_or_404(id)
+    db.session.delete(manufacturer)
+    db.session.commit()
+    return jsonify({"id": str(manufacturer.id), "name": manufacturer.name})
+
+
+@app.route('/api/cars/<int:id>', methods=['DELETE'])
+def delete_ajax_car(id):
+    car = Car.query.get_or_404(id)
+    db.session.delete(car)
+    db.session.commit()
+    return jsonify({"id": str(car.id), "name": car.model})
+
 @app.route('/car/delete/<int:id>', methods=['GET', 'POST'])
 def delete_course(id):
     car = Car.query.filter_by(id=id).first()
@@ -77,7 +93,6 @@ def edit_car(id):
         car.description = request.form['description']
         manufacturer_name = request.form['manufacturer']
         manufacturer = Manufacturer.query.filter_by(name=manufacturer_name).first()
-        song.artist = artist
         db.session.commit()
         return redirect(url_for('show_all_cars'))
 
