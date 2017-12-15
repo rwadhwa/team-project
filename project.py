@@ -93,7 +93,6 @@ def edit_car(id):
         car.description = request.form['description']
         manufacturer_name = request.form['manufacturer']
         manufacturer = Manufacturer.query.filter_by(name=manufacturer_name).first()
-        song.artist = artist
         db.session.commit()
         return redirect(url_for('show_all_cars'))
 

@@ -18,7 +18,7 @@ BMW | Germany
 Mercedes | Germany
 Tesla | United States
 
-<<<<<<< HEAD
+
 ## To Run the Application
 
 ### Install necessary virtual environment file:
