@@ -1,5 +1,5 @@
 import os
-from flask import Flask, session, render_template, request, redirect, url_for
+from flask import Flask, session, render_template, request, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -52,6 +52,22 @@ def get_all_cars():
     'Model-3'
     ]
     return render_template('inventory.html', cars = cars)
+
+
+@app.route('/api/manufacturers/<int:id>', methods=['DELETE'])
+def delete_ajax_manufacturer(id):
+    manufacturers = Manufacturer.query.get_or_404(id)
+    db.session.delete(manufacturer)
+    db.session.commit()
+    return jsonify({"id": str(manufacturer.id), "name": manufacturer.name})
+
+
+@app.route('/api/cars/<int:id>', methods=['DELETE'])
+def delete_ajax_car(id):
+    car = Car.query.get_or_404(id)
+    db.session.delete(car)
+    db.session.commit()
+    return jsonify({"id": str(car.id), "name": car.model})
 
 @app.route('/car/delete/<int:id>', methods=['GET', 'POST'])
 def delete_course(id):
