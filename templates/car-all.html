@@ -29,6 +29,9 @@ All Cars
       <th>Year</th>
       <th>Description</th>
       <th>Manufacturer</th>
+      <th>Edit</th>
+      <th>Delete</th>
+      <th>Ajax Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -42,9 +45,10 @@ All Cars
         <td>{{car.manufacturer.name}}</td>
         <td>
          <a href="/car/edit/{{car.id}}" class ="btn btn-success" role="button" aria-disabled="true"> Edit</a>
-         <a href="/car/delete/{{car.id}}" class ="btn btn-danger" role="button" aria-disabled="true"> Delete</a>
-         <button class="btn btn-warning delete_ajax_btn" role="button" data-car-id={{car.id}}>Delete Ajax</button>
+
        </td>
+       <td><a href="/car/delete/{{car.id}}" class ="btn btn-danger" role="button" aria-disabled="true"> Delete</a></td>
+       <td> <button class="btn btn-warning delete_ajax_btn" role="button" data-car-id={{car.id}}>Delete Ajax</button></td>
   </tr>
    {% endfor %}
  </tbody>

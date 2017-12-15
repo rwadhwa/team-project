@@ -26,6 +26,9 @@ All Manufacturers
         <th>Manufacturer ID</th>
         <th>Name</th>
         <th>Country</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Ajax Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -36,9 +39,9 @@ All Manufacturers
         <td>{{manufacturer.country}}</td>
         <td>
           <a href="/manufacturer/edit/{{manufacturer.id}}" class ="btn btn-success" role="button" aria-disabled="true"> Edit</a>
-          <a href="/manufacturer/delete/{{manufacturer.id}}" class="btn btn-danger" role="button" aria-disabled="true"> Delete</a>
-          <button class="btn btn-warning delete_ajax_btn" role="button" data-manufacturer-id={{manufacturer.id}}>Delete Ajax</button>
         </td>
+        <td><a href="/manufacturer/delete/{{manufacturer.id}}" class="btn btn-danger" role="button" aria-disabled="true"> Delete</a></td>
+        <td><button class="btn btn-warning delete_ajax_btn" role="button" data-manufacturer-id={{manufacturer.id}}>Delete Ajax</button></td>
   </tr>
    {% endfor %}
  </tbody>

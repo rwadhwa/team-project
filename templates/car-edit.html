@@ -49,6 +49,9 @@ Edit Car
           {% endfor %}
         </select>
       </div>
+      <div class="form-group">
+        Manufacturer not in the list? <a href="/manufacturer/add" class="btn btn-success" role="button" aria-disabled="true">Add Manufacturer</a>
+      </div>
     <div class="form-group">
       <label>Description</label>
       <textarea class="form-control" name="description" required="true">{{car.description}}</textarea>
