@@ -67,13 +67,17 @@ def delete_course(id):
 @app.route('/car/edit/<int:id>', methods=['GET', 'POST'])
 def edit_car(id):
     car = Car.query.filter_by(id=id).first()
+    manufacturers = Manufacturer.query.all()
     if request.method == 'GET':
-        return render_template('car-edit.html', car=car)
+        return render_template('car-edit.html', car=car, manufacturers=manufacturers)
     if request.method == 'POST':
         car.model = request.form['model']
         car.cartype = request.form['cartype']
         car.year = request.form['year']
         car.description = request.form['description']
+        manufacturer_name = request.form['manufacturer']
+        manufacturer = Manufacturer.query.filter_by(name=manufacturer_name).first()
+        song.artist = artist
         db.session.commit()
         return redirect(url_for('show_all_cars'))
 

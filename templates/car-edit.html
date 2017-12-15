@@ -27,8 +27,28 @@ Edit Car
   </div>
   <div class="form-group">
   <label>Year</label>
-  <input class="form-control" type="text" name="year" value="{{car.year}}" required="true">
+  <select class="form-control" name="year">
+        {% for i in range(1970, 2021) %}
+          {% if i == 2017 %}
+            <option selected="selected">{{i}}</option>
+          {% else %}
+            <option>{{i}}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
 </div>
+<div class="form-group">
+        <label>Manufacturer</label>
+        <select class="form-control" name="manufacturer">
+          {% for manufacturer in manufacturers %}
+            {% if manufacturer == car.manufacturer %}
+              <option selected="selected">{{manufacturer.name}}</option>
+            {% else %}
+              <option>{{manufacturer.name}}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
     <div class="form-group">
       <label>Description</label>
       <textarea class="form-control" name="description" required="true">{{car.description}}</textarea>
